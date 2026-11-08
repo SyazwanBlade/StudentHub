@@ -58,9 +58,19 @@ class _SplashPageState extends State<SplashPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // ===== LOGO =====
-            Icon(Icons.school, size: 96, color: scheme.onPrimary),
-            const SizedBox(height: 16),
+            // ===== BOWING PERSON (Irasutoya) =====
+            // White circle so the dark suit stands out on the gradient.
+            Container(
+              width: 180,
+              height: 180,
+              padding: const EdgeInsets.all(20),
+              decoration: const BoxDecoration(
+                color: Colors.white,
+                shape: BoxShape.circle,
+              ),
+              child: Image.asset('assets/images/welcome_bow.png'),
+            ),
+            const SizedBox(height: 24),
 
             // ===== WELCOME TEXT =====
             Text(
