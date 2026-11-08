@@ -58,8 +58,8 @@ class _SplashPageState extends State<SplashPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // ===== BOWING PERSON (Irasutoya) =====
-            // White circle so the dark suit stands out on the gradient.
+            // ===== GRADUATE (Irasutoya) =====
+            // White circle so the picture stands out on the gradient.
             Container(
               width: 180,
               height: 180,
@@ -68,7 +68,7 @@ class _SplashPageState extends State<SplashPage> {
                 color: Colors.white,
                 shape: BoxShape.circle,
               ),
-              child: Image.asset('assets/images/welcome_bow.png'),
+              child: Image.asset('assets/images/welcome_graduate.png'),
             ),
             const SizedBox(height: 24),
 
