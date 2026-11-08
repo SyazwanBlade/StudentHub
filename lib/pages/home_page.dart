@@ -187,15 +187,13 @@ class _StudentCarousel extends StatelessWidget {
   Widget build(BuildContext context) {
     // Only students that have a photo are shown here.
     final featured = sampleStudents.where((s) => s.photoAsset != null).toList();
-    // Blank card at the end: stands for the remaining students without photos.
+    // One blank "Unknown" card for each remaining student without a photo,
+    // so the row has one card per student and scrolls right.
     final others = sampleStudents.length - featured.length;
     final cards = [
       ...featured,
-      Student(
-        name: 'Unknown',
-        matric: '-',
-        programme: '+$others other students',
-      ),
+      for (var i = 0; i < others; i++)
+        const Student(name: 'Unknown', matric: '-', programme: '-'),
     ];
     return SizedBox(
       height: 230,
