@@ -187,14 +187,24 @@ class _StudentCarousel extends StatelessWidget {
   Widget build(BuildContext context) {
     // Only students that have a photo are shown here.
     final featured = sampleStudents.where((s) => s.photoAsset != null).toList();
+    // Blank card at the end: stands for the remaining students without photos.
+    final others = sampleStudents.length - featured.length;
+    final cards = [
+      ...featured,
+      Student(
+        name: 'Unknown',
+        matric: '-',
+        programme: '+$others other students',
+      ),
+    ];
     return SizedBox(
       height: 230,
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
         padding: const EdgeInsets.symmetric(horizontal: 16),
-        itemCount: featured.length,
+        itemCount: cards.length,
         separatorBuilder: (_, _) => const SizedBox(width: 12),
-        itemBuilder: (context, i) => _StudentCard(student: featured[i]),
+        itemBuilder: (context, i) => _StudentCard(student: cards[i]),
       ),
     );
   }
@@ -225,7 +235,9 @@ class _StudentCard extends StatelessWidget {
                 CircleAvatar(
                   radius: 40,
                   backgroundImage: photo == null ? null : AssetImage(photo),
-                  child: photo == null ? Text(student.name[0]) : null,
+                  child: photo == null
+                      ? const Icon(Icons.person, size: 40)
+                      : null,
                 ),
                 const SizedBox(height: 10),
                 Text(
