@@ -15,6 +15,11 @@ void main() {
       ),
     );
 
+    // Welcome screen first, then the main app after the delay.
+    expect(find.text('Please wait...'), findsOneWidget);
+    await tester.pump(const Duration(seconds: 3));
+    await tester.pumpAndSettle();
+
     final context = tester.element(find.byType(NavigationBar));
     expect(context.read<AppState>().currentIndex, 0);
 

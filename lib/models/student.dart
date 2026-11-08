@@ -68,33 +68,48 @@ const sampleStudents = [
     role: 'QA & CI/CD',
     photoAsset: 'assets/images/izz.jpg',
   ),
-  // --- Filler students (no photo) ---
+  // --- Filler students (Irasutoya illustrations) ---
   Student(
     name: 'Nur Aina Binti Rosli',
     matric: '101001',
+    photoAsset: 'assets/images/unknown1.jpg',
     programme: 'Computer Science',
   ),
   Student(
     name: 'Daniel Anak Jimmy',
     matric: '101002',
+    photoAsset: 'assets/images/unknown2.jpg',
     programme: 'Computer Science',
   ),
   Student(
     name: 'Farah Binti Hamid',
     matric: '101003',
+    photoAsset: 'assets/images/unknown3.jpg',
     programme: 'Computer Science',
     isActive: false,
   ),
-  Student(name: 'Haziq Bin Mansor', matric: '101004', programme: 'Networking'),
+  Student(
+    name: 'Haziq Bin Mansor',
+    matric: '101004',
+    photoAsset: 'assets/images/unknown4.jpg',
+    programme: 'Networking',
+  ),
   Student(
     name: 'Siti Balqis Binti Aziz',
     matric: '101005',
+    photoAsset: 'assets/images/unknown5.jpg',
     programme: 'Networking',
   ),
-  Student(name: 'Jason Lim Wei Han', matric: '101006', programme: 'Multimedia'),
+  Student(
+    name: 'Jason Lim Wei Han',
+    matric: '101006',
+    photoAsset: 'assets/images/unknown6.jpg',
+    programme: 'Multimedia',
+  ),
   Student(
     name: 'Alya Sofea Binti Karim',
     matric: '101007',
+    photoAsset: 'assets/images/unknown7.jpg',
     programme: 'Multimedia',
     isActive: false,
   ),

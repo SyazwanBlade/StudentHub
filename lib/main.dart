@@ -6,6 +6,7 @@ import 'pages/about_page.dart';
 import 'pages/home_page.dart';
 import 'pages/programme_page.dart';
 import 'pages/records_page.dart';
+import 'pages/splash_page.dart';
 import 'pages/student_list_page.dart';
 import 'state/app_state.dart';
 import 'widgets/app_drawer.dart';
@@ -44,7 +45,8 @@ class StudentHubApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigo),
         useMaterial3: true,
       ),
-      home: const MainShell(),
+      // Welcome screen first, then the main shell.
+      home: const SplashPage(next: MainShell()),
     );
   }
 }
