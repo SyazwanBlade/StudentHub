@@ -1,4 +1,3 @@
-
 class Student {
   final String name;
   final String matricNo;
@@ -67,5 +66,3 @@ const List<Student> sampleStudents = [
     cgpa: 3.45,
   ),
 ];
-
-

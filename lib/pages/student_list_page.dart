@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import '../models/student.dart';
 
@@ -11,10 +10,7 @@ class StudentListPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text(
           'Students',
-          style: TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-          ),
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
         backgroundColor: Colors.blue,
         centerTitle: true,
@@ -35,10 +31,7 @@ class StudentListPage extends StatelessWidget {
 
               leading: CircleAvatar(
                 backgroundColor: Colors.blue.shade100,
-                child: const Icon(
-                  Icons.person,
-                  color: Colors.blue,
-                ),
+                child: const Icon(Icons.person, color: Colors.blue),
               ),
 
               // Show student name only
@@ -61,8 +54,7 @@ class StudentListPage extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) =>
-                        StudentDetailsPage(student: student),
+                    builder: (context) => StudentDetailsPage(student: student),
                   ),
                 );
               },
@@ -78,10 +70,7 @@ class StudentListPage extends StatelessWidget {
 class StudentDetailsPage extends StatelessWidget {
   final Student student;
 
-  const StudentDetailsPage({
-    super.key,
-    required this.student,
-  });
+  const StudentDetailsPage({super.key, required this.student});
 
   @override
   Widget build(BuildContext context) {
@@ -106,11 +95,7 @@ class StudentDetailsPage extends StatelessWidget {
             CircleAvatar(
               radius: 55,
               backgroundColor: Colors.blue.shade100,
-              child: const Icon(
-                Icons.person,
-                size: 65,
-                color: Colors.blue,
-              ),
+              child: const Icon(Icons.person, size: 65, color: Colors.blue),
             ),
 
             const SizedBox(height: 16),
@@ -118,32 +103,17 @@ class StudentDetailsPage extends StatelessWidget {
             // Student name
             Text(
               student.name,
-              style: const TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-              ),
+              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
 
             const SizedBox(height: 30),
 
             // Student information
-            _buildDetailCard(
-              Icons.badge,
-              'Matric Number',
-              student.matricNo,
-            ),
+            _buildDetailCard(Icons.badge, 'Matric Number', student.matricNo),
 
-            _buildDetailCard(
-              Icons.school,
-              'Programme',
-              student.programme,
-            ),
+            _buildDetailCard(Icons.school, 'Programme', student.programme),
 
-            _buildDetailCard(
-              Icons.email,
-              'Email',
-              student.email,
-            ),
+            _buildDetailCard(Icons.email, 'Email', student.email),
           ],
         ),
       ),
@@ -151,32 +121,18 @@ class StudentDetailsPage extends StatelessWidget {
   }
 
   // Reusable student information card
-  Widget _buildDetailCard(
-      IconData icon,
-      String title,
-      String value,
-      ) {
+  Widget _buildDetailCard(IconData icon, String title, String value) {
     return Card(
       margin: const EdgeInsets.only(bottom: 12),
       child: ListTile(
-        leading: Icon(
-          icon,
-          color: Colors.blue,
-          size: 28,
-        ),
+        leading: Icon(icon, color: Colors.blue, size: 28),
         title: Text(
           title,
-          style: const TextStyle(
-            color: Colors.grey,
-            fontSize: 13,
-          ),
+          style: const TextStyle(color: Colors.grey, fontSize: 13),
         ),
         subtitle: Text(
           value,
-          style: const TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w600,
-          ),
+          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
         ),
       ),
     );
