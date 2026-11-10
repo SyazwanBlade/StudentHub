@@ -14,21 +14,19 @@ class ProgrammePage extends StatelessWidget {
         length: 3,
         child: Column(
           children: <Widget>[
-            Container(
-              child: TabBar(
-                labelColor: Colors.black,
-                unselectedLabelColor: Colors.blue,
-                indicatorColor: Colors.red,
-                labelStyle: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20.0,
-                ),
-                tabs: [
-                  Tab(text:"Software Engineering"),
-                  Tab(text:"Entrepreneurship"),
-                  Tab(text:"Sport Science"),
-                ],
+            const TabBar(
+              labelColor: Colors.black,
+              unselectedLabelColor: Colors.blue,
+              indicatorColor: Colors.red,
+              labelStyle: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 20.0,
               ),
+              tabs: [
+                Tab(text: "Software Engineering"),
+                Tab(text: "Entrepreneurship"),
+                Tab(text: "Sport Science"),
+              ],
             ),
             Expanded(
               child: TabBarView(

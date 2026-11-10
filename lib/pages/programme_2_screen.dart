@@ -4,8 +4,20 @@ class Programme2Screen extends StatelessWidget {
   Programme2Screen({super.key});
 
   final _programme1data = [
-    {'ID': '144040', 'Name': 'Elon Musk', 'Department': 'Entrepreneurship', 'Age': 47, 'Email': '104040@siswa.unimas.my'},
-    {'ID': '199990', 'Name': 'Sam Altman', 'Department': 'Entrepreneurship', 'Age': 30, 'Email': '199990@siswa.unimas.my'},
+    {
+      'ID': '144040',
+      'Name': 'Elon Musk',
+      'Department': 'Entrepreneurship',
+      'Age': 47,
+      'Email': '104040@siswa.unimas.my',
+    },
+    {
+      'ID': '199990',
+      'Name': 'Sam Altman',
+      'Department': 'Entrepreneurship',
+      'Age': 30,
+      'Email': '199990@siswa.unimas.my',
+    },
   ];
 
   @override
@@ -20,9 +32,10 @@ class Programme2Screen extends StatelessWidget {
               borderRadius: BorderRadius.circular(12.0),
               child: DataTable(
                 border: TableBorder.all(
-                    color: Colors.grey,
-                    style: BorderStyle.solid,
-                    borderRadius: BorderRadius.circular(12.0)),
+                  color: Colors.grey,
+                  style: BorderStyle.solid,
+                  borderRadius: BorderRadius.circular(12.0),
+                ),
                 columnSpacing: 30,
                 headingRowColor: WidgetStateProperty.all(Colors.green.shade400),
                 columns: [
