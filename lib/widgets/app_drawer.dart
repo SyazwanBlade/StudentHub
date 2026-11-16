@@ -6,46 +6,66 @@ import '../state/app_state.dart';
 class AppDrawer extends StatelessWidget {
   const AppDrawer({super.key});
 
-  void _go(BuildContext context, int index) {
+  void _navigate(BuildContext context, int index) {
     context.read<AppState>().setIndex(index);
     Navigator.pop(context);
   }
 
   @override
   Widget build(BuildContext context) {
+    final currentIndex = context.select<AppState, int>(
+      (state) => state.currentIndex,
+    );
+
     return Drawer(
       child: ListView(
         children: [
           const DrawerHeader(
-            child: Text('StudentHub', style: TextStyle(fontSize: 24)),
+            child: Text(
+              'StudentHub',
+              style: TextStyle(fontSize: 24),
+            ),
           ),
           ListTile(
             leading: const Icon(Icons.home),
             title: const Text('Home'),
-            onTap: () => _go(context, 0),
+            selected: currentIndex == 0,
+            onTap: () => _navigate(context, 0),
           ),
           ListTile(
             leading: const Icon(Icons.people),
             title: const Text('Student List'),
-            onTap: () => _go(context, 1),
+            selected: currentIndex == 1,
+            onTap: () => _navigate(context, 1),
           ),
           ListTile(
             leading: const Icon(Icons.table_chart),
             title: const Text('Student Records'),
-            onTap: () => _go(context, 2),
+            selected: currentIndex == 2,
+            onTap: () => _navigate(context, 2),
+          ),
+          ListTile(
+            leading: const Icon(Icons.school),
+            title: const Text('Programmes'),
+            selected: currentIndex == 3,
+            onTap: () => _navigate(context, 3),
           ),
           ListTile(
             leading: const Icon(Icons.info),
             title: const Text('About'),
-            onTap: () => _go(context, 4),
+            selected: currentIndex == 4,
+            onTap: () => _navigate(context, 4),
           ),
           ListTile(
             leading: const Icon(Icons.settings),
             title: const Text('Settings'),
             onTap: () {
               Navigator.pop(context);
+
               ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('Settings coming soon')),
+                const SnackBar(
+                  content: Text('Settings coming soon'),
+                ),
               );
             },
           ),

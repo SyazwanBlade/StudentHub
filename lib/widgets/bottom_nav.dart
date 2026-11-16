@@ -8,10 +8,15 @@ class BottomNav extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final currentIndex = context.select<AppState, int>((s) => s.currentIndex);
+    final currentIndex = context.select<AppState, int>(
+      (state) => state.currentIndex,
+    );
+
     return NavigationBar(
       selectedIndex: currentIndex,
-      onDestinationSelected: context.read<AppState>().setIndex,
+      onDestinationSelected: (index) {
+        context.read<AppState>().setIndex(index);
+      },
       destinations: const [
         NavigationDestination(
           icon: Icon(Icons.home_outlined),

@@ -21,15 +21,14 @@ void main() {
   );
 }
 
-/// Lets mouse and trackpad drag lists sideways (Flutter web/desktop ignores
-/// mouse drags by default).
+/// Supports mouse and trackpad dragging on desktop and web.
 class AppScrollBehavior extends MaterialScrollBehavior {
   @override
   Set<PointerDeviceKind> get dragDevices => {
-    PointerDeviceKind.touch,
-    PointerDeviceKind.mouse,
-    PointerDeviceKind.trackpad,
-  };
+        PointerDeviceKind.touch,
+        PointerDeviceKind.mouse,
+        PointerDeviceKind.trackpad,
+      };
 }
 
 class StudentHubApp extends StatelessWidget {
@@ -42,17 +41,21 @@ class StudentHubApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       scrollBehavior: AppScrollBehavior(),
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigo),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.indigo,
+        ),
         useMaterial3: true,
       ),
-      // Welcome screen first, then the main shell.
-      home: const SplashPage(next: MainShell()),
+      home: const SplashPage(
+        next: MainShell(),
+      ),
     );
   }
 }
 
-/// Order must match the destinations in BottomNav.
-const _titles = [
+/// Navigation destination titles.
+/// Their order must match the page and navigation destination order.
+const List<String> _titles = [
   'Home',
   'Student Information',
   'Student Records',
@@ -65,12 +68,17 @@ class MainShell extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final index = context.select<AppState, int>((s) => s.currentIndex);
+    final currentIndex = context.select<AppState, int>(
+      (state) => state.currentIndex,
+    );
+
     return Scaffold(
-      appBar: AppBar(title: Text(_titles[index])),
+      appBar: AppBar(
+        title: Text(_titles[currentIndex]),
+      ),
       drawer: const AppDrawer(),
       body: IndexedStack(
-        index: index,
+        index: currentIndex,
         children: const [
           HomePage(),
           StudentListPage(),
