@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:provider/provider.dart';
 import 'package:studenthub/main.dart';
@@ -14,11 +15,22 @@ void main() {
       ),
     );
 
-    expect(find.text('Home Page'), findsOneWidget);
+    // Welcome screen first, then the main app after the delay.
+    expect(find.text('Please wait...'), findsOneWidget);
+    await tester.pump(const Duration(seconds: 3));
+    await tester.pumpAndSettle();
 
-    await tester.tap(find.text('About'));
+    final context = tester.element(find.byType(NavigationBar));
+    expect(context.read<AppState>().currentIndex, 0);
+
+    await tester.tap(
+      find.descendant(
+        of: find.byType(NavigationBar),
+        matching: find.text('About'),
+      ),
+    );
     await tester.pump();
-    expect(find.text('About Page'), findsOneWidget);
+    expect(context.read<AppState>().currentIndex, 4);
   });
 
   test('AppState notifies only when index changes', () {
