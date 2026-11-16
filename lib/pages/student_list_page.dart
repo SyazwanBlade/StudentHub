@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/student.dart';
+import 'student_detail_page.dart';
 
 class StudentListPage extends StatelessWidget {
   const StudentListPage({super.key});
@@ -54,7 +55,7 @@ class StudentListPage extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => StudentDetailsPage(student: student),
+                   builder: (context) => StudentDetailPage(student: student),
                   ),
                 );
               },
