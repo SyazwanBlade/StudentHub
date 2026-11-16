@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -5,6 +6,7 @@ import 'pages/about_page.dart';
 import 'pages/home_page.dart';
 import 'pages/programme_page.dart';
 import 'pages/records_page.dart';
+import 'pages/splash_page.dart';
 import 'pages/student_list_page.dart';
 import 'state/app_state.dart';
 import 'widgets/app_drawer.dart';
@@ -19,6 +21,17 @@ void main() {
   );
 }
 
+/// Lets mouse and trackpad drag lists sideways (Flutter web/desktop ignores
+/// mouse drags by default).
+class AppScrollBehavior extends MaterialScrollBehavior {
+  @override
+  Set<PointerDeviceKind> get dragDevices => {
+    PointerDeviceKind.touch,
+    PointerDeviceKind.mouse,
+    PointerDeviceKind.trackpad,
+  };
+}
+
 class StudentHubApp extends StatelessWidget {
   const StudentHubApp({super.key});
 
@@ -27,11 +40,13 @@ class StudentHubApp extends StatelessWidget {
     return MaterialApp(
       title: 'StudentHub',
       debugShowCheckedModeBanner: false,
+      scrollBehavior: AppScrollBehavior(),
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigo),
         useMaterial3: true,
       ),
-      home: const MainShell(),
+      // Welcome screen first, then the main shell.
+      home: const SplashPage(next: MainShell()),
     );
   }
 }
