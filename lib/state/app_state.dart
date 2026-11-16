@@ -1,21 +1,34 @@
 import 'package:flutter/foundation.dart';
 
+/// Main sections of the app, in the same order as the bottom navigation.
+///
+/// Kept free of UI types (icons, widgets) so the state layer stays separate
+/// from the UI. Adding a section here automatically updates the valid range.
+enum AppSection { home, students, records, programmes, about }
+
 /// Shared application state (selected navigation destination).
+///
+/// Keeping the selected section in the provider, rather than in a page's
+/// [StatefulWidget], lets the drawer and bottom navigation stay in sync.
 class AppState extends ChangeNotifier {
-  int _currentIndex = 0;
+  AppSection _section = AppSection.home;
 
-  int get currentIndex => _currentIndex;
+  /// Currently selected section.
+  AppSection get section => _section;
 
-  /// Updates the selected main navigation destination.
-  ///
-  /// Keeping this mutation in the provider, rather than in a page's
-  /// [StatefulWidget], lets the drawer and bottom navigation stay in sync.
-  void setIndex(int index) {
-    if (index < 0) {
-      throw ArgumentError.value(index, 'index', 'must not be negative');
-    }
-    if (index == _currentIndex) return;
-    _currentIndex = index;
+  /// Index of the selected section, for widgets such as [NavigationBar].
+  int get currentIndex => _section.index;
+
+  /// Selects [section] and notifies listeners only if it changed.
+  void select(AppSection section) {
+    if (section == _section) return;
+    _section = section;
     notifyListeners();
+  }
+
+  /// Selects the section at [index]. Throws a [RangeError] if out of range.
+  void setIndex(int index) {
+    RangeError.checkValidIndex(index, AppSection.values, 'index');
+    select(AppSection.values[index]);
   }
 }
