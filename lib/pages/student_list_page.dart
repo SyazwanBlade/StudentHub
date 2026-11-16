@@ -55,7 +55,7 @@ class StudentListPage extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                   builder: (context) => StudentDetailPage(student: student),
+                    builder: (context) => StudentDetailPage(student: student),
                   ),
                 );
               },

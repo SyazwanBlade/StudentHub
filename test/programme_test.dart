@@ -1,15 +1,10 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:studenthub/pages/programme_page.dart';
 
 void main() {
   testWidgets('Programme page displays three tabs', (tester) async {
-    await tester.pumpWidget(
-      const MaterialApp(
-        home: ProgrammePage(),
-      ),
-    );
+    await tester.pumpWidget(const MaterialApp(home: ProgrammePage()));
 
     // Check that the tab components exist
     expect(find.byType(DefaultTabController), findsOneWidget);
@@ -20,32 +15,17 @@ void main() {
     final tabBar = tester.widget<TabBar>(find.byType(TabBar));
 
     expect(tabBar.tabs.length, 3);
-    expect(
-      (tabBar.tabs[0] as Tab).text,
-      'Software Engineering',
-    );
-    expect(
-      (tabBar.tabs[1] as Tab).text,
-      'Entrepreneurship',
-    );
-    expect(
-      (tabBar.tabs[2] as Tab).text,
-      'Sport Science',
-    );
+    expect((tabBar.tabs[0] as Tab).text, 'Software Engineering');
+    expect((tabBar.tabs[1] as Tab).text, 'Entrepreneurship');
+    expect((tabBar.tabs[2] as Tab).text, 'Sport Science');
   });
 
   testWidgets('Programme tabs can be selected', (tester) async {
-    await tester.pumpWidget(
-      const MaterialApp(
-        home: ProgrammePage(),
-      ),
-    );
+    await tester.pumpWidget(const MaterialApp(home: ProgrammePage()));
 
     // Check the default selected tab
     expect(
-      DefaultTabController.of(
-        tester.element(find.byType(TabBar)),
-      ).index,
+      DefaultTabController.of(tester.element(find.byType(TabBar))).index,
       0,
     );
 
@@ -54,9 +34,7 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(
-      DefaultTabController.of(
-        tester.element(find.byType(TabBar)),
-      ).index,
+      DefaultTabController.of(tester.element(find.byType(TabBar))).index,
       1,
     );
 
@@ -65,9 +43,7 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(
-      DefaultTabController.of(
-        tester.element(find.byType(TabBar)),
-      ).index,
+      DefaultTabController.of(tester.element(find.byType(TabBar))).index,
       2,
     );
 
@@ -76,9 +52,7 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(
-      DefaultTabController.of(
-        tester.element(find.byType(TabBar)),
-      ).index,
+      DefaultTabController.of(tester.element(find.byType(TabBar))).index,
       0,
     );
   });

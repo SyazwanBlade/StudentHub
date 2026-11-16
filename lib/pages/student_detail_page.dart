@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import '../models/student.dart';
 
@@ -36,10 +35,7 @@ class StudentDetailPage extends StatelessWidget {
 
             Text(
               student.name,
-              style: const TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-              ),
+              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
 
             const SizedBox(height: 30),
@@ -51,11 +47,7 @@ class StudentDetailPage extends StatelessWidget {
               selectable: true,
             ),
 
-            _buildDetailCard(
-              Icons.school,
-              'Programme',
-              student.programme,
-            ),
+            _buildDetailCard(Icons.school, 'Programme', student.programme),
 
             _buildDetailCard(
               Icons.email,
