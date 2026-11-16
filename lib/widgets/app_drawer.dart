@@ -26,11 +26,7 @@ class AppDrawer extends StatelessWidget {
           ),
           ListTile(
             leading: const Icon(Icons.people),
-<<<<<<< HEAD
             title: const Text('Student List'),
-=======
-            title: const Text('what is the capital of assyria'),
->>>>>>> origin/main
             onTap: () => _go(context, 1),
           ),
           ListTile(
