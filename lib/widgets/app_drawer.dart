@@ -6,45 +6,45 @@ import '../state/app_state.dart';
 class AppDrawer extends StatelessWidget {
   const AppDrawer({super.key});
 
-  void _go(BuildContext context, int index) {
-    context.read<AppState>().setIndex(index);
+  void _go(BuildContext context, AppSection section) {
+    context.read<AppState>().select(section);
     Navigator.pop(context);
   }
 
   @override
   Widget build(BuildContext context) {
+    // Rebuilds only when the selected section changes.
+    final current = context.select<AppState, AppSection>((s) => s.section);
+
+    ListTile item(IconData icon, String title, AppSection section) {
+      return ListTile(
+        leading: Icon(icon),
+        title: Text(title),
+        selected: current == section,
+        onTap: () => _go(context, section),
+      );
+    }
+
     return Drawer(
       child: ListView(
         children: [
           const DrawerHeader(
             child: Text('StudentHub', style: TextStyle(fontSize: 24)),
           ),
-          ListTile(
-            leading: const Icon(Icons.home),
-            title: const Text('Home'),
-            onTap: () => _go(context, 0),
-          ),
-          ListTile(
-            leading: const Icon(Icons.people),
-            title: const Text('Student List'),
-            onTap: () => _go(context, 1),
-          ),
-          ListTile(
-            leading: const Icon(Icons.table_chart),
-            title: const Text('Student Records'),
-            onTap: () => _go(context, 2),
-          ),
-          ListTile(
-            leading: const Icon(Icons.info),
-            title: const Text('About'),
-            onTap: () => _go(context, 4),
-          ),
+          item(Icons.home, 'Home', AppSection.home),
+          item(Icons.people, 'Student List', AppSection.students),
+          item(Icons.table_chart, 'Student Records', AppSection.records),
+          item(Icons.school, 'Programmes', AppSection.programmes),
+          item(Icons.info, 'About', AppSection.about),
           ListTile(
             leading: const Icon(Icons.settings),
             title: const Text('Settings'),
             onTap: () {
+              // Get the messenger before closing the drawer, so we don't use
+              // the drawer's context after it has been removed.
+              final messenger = ScaffoldMessenger.of(context);
               Navigator.pop(context);
-              ScaffoldMessenger.of(context).showSnackBar(
+              messenger.showSnackBar(
                 const SnackBar(content: Text('Settings coming soon')),
               );
             },

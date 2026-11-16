@@ -51,26 +51,29 @@ class StudentHubApp extends StatelessWidget {
   }
 }
 
-/// Order must match the destinations in BottomNav.
-const _titles = [
-  'Home',
-  'Student Information',
-  'Student Records',
-  'Programmes',
-  'About',
-];
+/// AppBar title for each section. The exhaustive switch makes the compiler
+/// flag a missing title when a new [AppSection] is added.
+String _titleFor(AppSection section) => switch (section) {
+  AppSection.home => 'Home',
+  AppSection.students => 'Student Information',
+  AppSection.records => 'Student Records',
+  AppSection.programmes => 'Programmes',
+  AppSection.about => 'About',
+};
 
 class MainShell extends StatelessWidget {
   const MainShell({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final index = context.select<AppState, int>((s) => s.currentIndex);
+    // Rebuilds only when the selected section changes.
+    final section = context.select<AppState, AppSection>((s) => s.section);
     return Scaffold(
-      appBar: AppBar(title: Text(_titles[index])),
+      appBar: AppBar(title: Text(_titleFor(section))),
       drawer: const AppDrawer(),
+      // Children must follow the AppSection order.
       body: IndexedStack(
-        index: index,
+        index: section.index,
         children: const [
           HomePage(),
           StudentListPage(),

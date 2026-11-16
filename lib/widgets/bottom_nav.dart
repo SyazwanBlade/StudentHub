@@ -12,6 +12,7 @@ class BottomNav extends StatelessWidget {
     return NavigationBar(
       selectedIndex: currentIndex,
       onDestinationSelected: context.read<AppState>().setIndex,
+      // Must follow the AppSection order.
       destinations: const [
         NavigationDestination(
           icon: Icon(Icons.home_outlined),

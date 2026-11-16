@@ -44,4 +44,31 @@ void main() {
     expect(state.currentIndex, 2);
     expect(count, 1);
   });
+
+  test('AppState rejects an out-of-range index', () {
+    final state = AppState();
+    expect(() => state.setIndex(-1), throwsRangeError);
+    expect(() => state.setIndex(AppSection.values.length), throwsRangeError);
+    expect(state.section, AppSection.home);
+  });
+
+  testWidgets('drawer and bottom nav stay in sync', (tester) async {
+    await tester.pumpWidget(
+      ChangeNotifierProvider(
+        create: (_) => AppState(),
+        child: const StudentHubApp(),
+      ),
+    );
+    await tester.pump(const Duration(seconds: 3));
+    await tester.pumpAndSettle();
+
+    // Open the drawer and pick Student Records.
+    await tester.tap(find.byTooltip('Open navigation menu'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Student Records').last);
+    await tester.pumpAndSettle();
+
+    final nav = tester.widget<NavigationBar>(find.byType(NavigationBar));
+    expect(nav.selectedIndex, AppSection.records.index);
+  });
 }
