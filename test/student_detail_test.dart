@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:studenthub/models/student.dart';
@@ -15,9 +14,7 @@ void main() {
 
   testWidgets('Student details are displayed correctly', (tester) async {
     await tester.pumpWidget(
-      const MaterialApp(
-        home: StudentDetailPage(student: student),
-      ),
+      const MaterialApp(home: StudentDetailPage(student: student)),
     );
 
     expect(find.text('Student Details'), findsOneWidget);
@@ -32,19 +29,14 @@ void main() {
     expect(find.text('3.90'), findsOneWidget);
   });
 
-  testWidgets('Matric number and email use SelectableText', (
-    tester,
-  ) async {
+  testWidgets('Matric number and email use SelectableText', (tester) async {
     await tester.pumpWidget(
-      const MaterialApp(
-        home: StudentDetailPage(student: student),
-      ),
+      const MaterialApp(home: StudentDetailPage(student: student)),
     );
 
     expect(
       find.byWidgetPredicate(
-        (widget) =>
-            widget is SelectableText && widget.data == '118998',
+        (widget) => widget is SelectableText && widget.data == '118998',
       ),
       findsOneWidget,
     );
@@ -52,8 +44,7 @@ void main() {
     expect(
       find.byWidgetPredicate(
         (widget) =>
-            widget is SelectableText &&
-            widget.data == 'ali.tan@unimas.my',
+            widget is SelectableText && widget.data == 'ali.tan@unimas.my',
       ),
       findsOneWidget,
     );
